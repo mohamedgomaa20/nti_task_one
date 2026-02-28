@@ -14,15 +14,25 @@ void main(List<String> arguments) {
   print("Enter Your password:");
   String password = stdin.readLineSync()!;
 
-  print("Enter Your account status:(true or false)");
+  print("Is your account active? (true/false):");
   bool isAccountActive = stdin.readLineSync()?.toLowerCase() == "true";
 
   print("==================");
-  print(login(username, password, isAccountActive));
+  print(
+    login(
+      username: username,
+      password: password,
+      isAccountActive: isAccountActive,
+    ),
+  );
   print("==================");
 }
 
-String login(String username, String password, bool isAccountActive) {
+String login({
+  required String username,
+  required String password,
+  required bool isAccountActive,
+}) {
   if (username.toLowerCase() == "student" &&
       password.toLowerCase() == "iti123" &&
       isAccountActive) {
