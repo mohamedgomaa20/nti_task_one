@@ -1,16 +1,22 @@
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-3 Create a function that receives exam score and attendance percentage. Student
-passes only if score ≥ 50 AND attendance ≥ 75. Return 'Passed' or 'Failed'.
+4 Create a function that receives salary, age, and hasExistingLoan. Loan approved if
+salary ≥ 5000, age between 21 and 60, and no existing loan. Return 'Loan Approved'
+or 'Loan Rejected'.
  */
 void main(List<String> arguments) {
-  print(checkStudentStatus(50, 75));
-  print(checkStudentStatus(75, 80));
-  print(checkStudentStatus(40, 80));
-  print(checkStudentStatus(50, 60));
+  print(checkLoanApproval(6000, 22, false));
+  print(checkLoanApproval(6000, 62, false));
+  print(checkLoanApproval(6000, 22, true));
+  print(checkLoanApproval(4000, 22, false));
+  print(checkLoanApproval(4000, 20, true));
 }
 
-String checkStudentStatus(int examScore, int attendancePercentage) {
-  return (examScore >= 50 && attendancePercentage >= 75) ? "Passed" : "Failed";
+String checkLoanApproval(double salary, int age, bool hasExistingLoan) {
+  if (salary >= 5000 && age >= 21 && age <= 60 && !hasExistingLoan) {
+    return "Loan Approved";
+  } else {
+    return "Loan Rejected";
+  }
 }
