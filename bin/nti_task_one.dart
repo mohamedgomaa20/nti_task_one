@@ -1,27 +1,16 @@
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-6 Create a function that receives years of experience and performance rating (1–5).
-Employee receives bonus if experience ≥ 3 AND rating ≥ 4. Return 'Bonus Granted' or
-'No Bonus'.
+7 Create a function that receives hasAccessCard and knowsPassword. Door opens only
+if both are true. Return 'Door Opened' or 'Access Restricted'.
  */
 void main(List<String> arguments) {
-  print(getBonusStatus(5, 5));
-  print(getBonusStatus(4, 4));
-  print(getBonusStatus(2, 4));
-  print(getBonusStatus(4, 2));
-  print(getBonusStatus(4, 10));
-  print(getBonusStatus(4, -20));
+  print(checkDoorAccess(true, true));
+  print(checkDoorAccess(true, false));
+  print(checkDoorAccess(false, true));
+  print(checkDoorAccess(false, false));
 }
 
-String getBonusStatus(int yearsOfExperience, int performanceRating) {
-  if (performanceRating < 1 || performanceRating > 5) {
-    return "Invalid Rating";
-  }
-  if (yearsOfExperience < 0) {
-    return "Invalid Experience";
-  }
-  return yearsOfExperience >= 3 && performanceRating >= 4
-      ? "Bonus Granted"
-      : "No Bonus";
+String checkDoorAccess(bool hasAccessCard, bool knowsPassword) {
+  return (hasAccessCard && knowsPassword) ? "Door Opened" : "Access Restricted";
 }
