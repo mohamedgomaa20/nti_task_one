@@ -1,27 +1,31 @@
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-9 Create a function that receives completedLessons and quizScore. Next level unlocks if
-completed lessons ≥ 10 AND quiz score ≥ 70. Return 'Level Unlocked' or 'Complete
-Requirements'.
+10 Create a function that receives driver availability, user balance, and trip cost. Ride
+starts if driver available AND balance ≥ trip cost. Return 'Ride Confirmed' or
+'Insufficient Conditions'.
  */
 void main(List<String> arguments) {
-  print(checkLevelUnlock(10, 80));
-  print(checkLevelUnlock(10, 60));
-  print(checkLevelUnlock(5, 80));
-  print(checkLevelUnlock(5, 20));
-  print(checkLevelUnlock(5, -10));
-  print(checkLevelUnlock(-20, 80));
+  print(checkRideStatus(true, 10.0, 5.0));
+  print(checkRideStatus(false, 10.0, 5.0));
+  print(checkRideStatus(true, 5.0, 10.0));
+  print(checkRideStatus(true, 5.0, -10.0));
+  print(checkRideStatus(true, -5.0, 10.0));
 }
 
-String checkLevelUnlock(int completedLessons, int quizScore) {
-  if (completedLessons < 0) {
-    return "Invalid Completed Lessons";
+String checkRideStatus(
+  bool driverAvailable,
+  double userBalance,
+  double tripCost,
+) {
+  if (userBalance < 0) {
+    return "Invalid Balance";
   }
-  if (quizScore < 0 || quizScore > 100) {
-    return "Invalid Quiz Score";
+  if (tripCost < 0) {
+    return "Invalid Trip Cost";
   }
-  return (completedLessons >= 10 && quizScore >= 70)
-      ? "Level Unlocked"
-      : "Complete Requirements";
+
+  return (driverAvailable && userBalance >= tripCost)
+      ? "Ride Confirmed"
+      : "Insufficient Conditions";
 }
