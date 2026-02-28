@@ -1,18 +1,27 @@
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-5 Create a function that receives order amount and distance in kilometers. Free delivery
-if order ≥ 300, otherwise delivery fee = distance × 5. Return total amount including
-delivery.
+6 Create a function that receives years of experience and performance rating (1–5).
+Employee receives bonus if experience ≥ 3 AND rating ≥ 4. Return 'Bonus Granted' or
+'No Bonus'.
  */
 void main(List<String> arguments) {
-  print(calculateTotalAmount(300, 20));
-  print(calculateTotalAmount(200, 10));
-  print(calculateTotalAmount(100, 5));
+  print(getBonusStatus(5, 5));
+  print(getBonusStatus(4, 4));
+  print(getBonusStatus(2, 4));
+  print(getBonusStatus(4, 2));
+  print(getBonusStatus(4, 10));
+  print(getBonusStatus(4, -20));
 }
 
-double calculateTotalAmount(double orderAmount, double distanceInKilometers) {
-  return (orderAmount >= 300)
-      ? orderAmount
-      : orderAmount + (distanceInKilometers * 5);
+String getBonusStatus(int yearsOfExperience, int performanceRating) {
+  if (performanceRating < 1 || performanceRating > 5) {
+    return "Invalid Rating";
+  }
+  if (yearsOfExperience < 0) {
+    return "Invalid Experience";
+  }
+  return yearsOfExperience >= 3 && performanceRating >= 4
+      ? "Bonus Granted"
+      : "No Bonus";
 }
