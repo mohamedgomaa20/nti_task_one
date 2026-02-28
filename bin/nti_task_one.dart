@@ -1,22 +1,18 @@
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-4 Create a function that receives salary, age, and hasExistingLoan. Loan approved if
-salary ≥ 5000, age between 21 and 60, and no existing loan. Return 'Loan Approved'
-or 'Loan Rejected'.
+5 Create a function that receives order amount and distance in kilometers. Free delivery
+if order ≥ 300, otherwise delivery fee = distance × 5. Return total amount including
+delivery.
  */
 void main(List<String> arguments) {
-  print(checkLoanApproval(6000, 22, false));
-  print(checkLoanApproval(6000, 62, false));
-  print(checkLoanApproval(6000, 22, true));
-  print(checkLoanApproval(4000, 22, false));
-  print(checkLoanApproval(4000, 20, true));
+  print(calculateTotalAmount(300, 20));
+  print(calculateTotalAmount(200, 10));
+  print(calculateTotalAmount(100, 5));
 }
 
-String checkLoanApproval(double salary, int age, bool hasExistingLoan) {
-  if (salary >= 5000 && age >= 21 && age <= 60 && !hasExistingLoan) {
-    return "Loan Approved";
-  } else {
-    return "Loan Rejected";
-  }
+double calculateTotalAmount(double orderAmount, double distanceInKilometers) {
+  return (orderAmount >= 300)
+      ? orderAmount
+      : orderAmount + (distanceInKilometers * 5);
 }
