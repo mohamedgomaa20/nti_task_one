@@ -14,8 +14,8 @@ void main(List<String> arguments) {
   print("Enter Your password:");
   String password = stdin.readLineSync()!;
 
-  print("Is your account active? (true/false):");
-  bool isAccountActive = stdin.readLineSync()?.toLowerCase() == "true";
+  print("Is your account active? (y/n):");
+  bool isAccountActive = stdin.readLineSync()?.toLowerCase() == "y";
 
   print("==================");
   print(
