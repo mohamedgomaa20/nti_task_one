@@ -1,20 +1,16 @@
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-2 Create a function that receives product price, isPremium, and hasCoupon. Customer
-gets 15% discount if premium member OR has coupon. Return final price.
+3 Create a function that receives exam score and attendance percentage. Student
+passes only if score ≥ 50 AND attendance ≥ 75. Return 'Passed' or 'Failed'.
  */
 void main(List<String> arguments) {
-  print(calculateFinalPrice(100, true, false));
-  print(calculateFinalPrice(100, false, true));
-  print(calculateFinalPrice(100, true, true));
-  print(calculateFinalPrice(100, false, false));
+  print(checkStudentStatus(50, 75));
+  print(checkStudentStatus(75, 80));
+  print(checkStudentStatus(40, 80));
+  print(checkStudentStatus(50, 60));
 }
 
-double calculateFinalPrice(
-  double productPrice,
-  bool isPremium,
-  bool hasCoupon,
-) {
-  return (isPremium || hasCoupon) ? productPrice * 0.85 : productPrice;
+String checkStudentStatus(int examScore, int attendancePercentage) {
+  return (examScore >= 50 && attendancePercentage >= 75) ? "Passed" : "Failed";
 }
