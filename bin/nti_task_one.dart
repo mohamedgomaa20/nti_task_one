@@ -1,21 +1,20 @@
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-1 Create a function that receives username, password, and isAccountActive. Access is
-granted only if username equals 'student', password equals 'iti123', and account is
-active. Return 'Login Successful' or 'Access Denied'.
+2 Create a function that receives product price, isPremium, and hasCoupon. Customer
+gets 15% discount if premium member OR has coupon. Return final price.
  */
 void main(List<String> arguments) {
-  print(login("Mohamed", "1245", true));
-  print(login("Gomaa", "1245", false));
-  print(login("student", "iti123", false));
-  print(login("student", "iti123", true));
+  print(calculateFinalPrice(100, true, false));
+  print(calculateFinalPrice(100, false, true));
+  print(calculateFinalPrice(100, true, true));
+  print(calculateFinalPrice(100, false, false));
 }
 
-String login(String username, String password, bool isAccountActive) {
-  if (username == "student" && password == "iti123" && isAccountActive) {
-    return "Login Successful";
-  } else {
-    return "Access Denied";
-  }
+double calculateFinalPrice(
+  double productPrice,
+  bool isPremium,
+  bool hasCoupon,
+) {
+  return (isPremium || hasCoupon) ? productPrice * 0.85 : productPrice;
 }
