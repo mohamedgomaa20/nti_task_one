@@ -23,7 +23,9 @@ void main(List<String> arguments) {
     isPremium: isPremium,
     hasCoupon: hasCoupon,
   );
+  print("==================");
   print("Final Price is: $finalPrice");
+  print("==================");
 }
 
 double calculateFinalPrice({
