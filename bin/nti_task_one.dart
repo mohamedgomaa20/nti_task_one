@@ -1,22 +1,40 @@
+import 'dart:io';
+
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-4 Create a function that receives salary, age, and hasExistingLoan. Loan approved if
-salary ≥ 5000, age between 21 and 60, and no existing loan. Return 'Loan Approved'
-or 'Loan Rejected'.
+3 Create a function that receives exam score and attendance percentage. Student
+passes only if score ≥ 50 AND attendance ≥ 75. Return 'Passed' or 'Failed'.
  */
 void main(List<String> arguments) {
-  print(checkLoanApproval(6000, 22, false));
-  print(checkLoanApproval(6000, 62, false));
-  print(checkLoanApproval(6000, 22, true));
-  print(checkLoanApproval(4000, 22, false));
-  print(checkLoanApproval(4000, 20, true));
+  print("Enter Your Exam Score (0-100):");
+  int examScore = int.parse(stdin.readLineSync()!);
+  if (examScore < 0 || examScore > 100) {
+    print("=======================");
+    print("Invalid Exam Score");
+    print("=======================");
+    return;
+  }
+  print("Enter Your Attendance Percentage (0–100):");
+  int attendancePercentage = int.parse(stdin.readLineSync()!);
+  if (attendancePercentage < 0 || attendancePercentage > 100) {
+    print("=============================");
+    print("Invalid Attendance Percentage");
+    print("=============================");
+    return;
+  }
+  print("=======================");
+  String studentStatus = checkStudentStatus(
+    examScore: examScore,
+    attendancePercentage: attendancePercentage,
+  );
+  print("Your Status is: $studentStatus");
+  print("=======================");
 }
 
-String checkLoanApproval(double salary, int age, bool hasExistingLoan) {
-  if (salary >= 5000 && age >= 21 && age <= 60 && !hasExistingLoan) {
-    return "Loan Approved";
-  } else {
-    return "Loan Rejected";
-  }
+String checkStudentStatus({
+  required int examScore,
+  required int attendancePercentage,
+}) {
+  return (examScore >= 50 && attendancePercentage >= 75) ? "Passed" : "Failed";
 }
