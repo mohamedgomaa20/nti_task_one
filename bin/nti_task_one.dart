@@ -1,31 +1,44 @@
+import 'dart:io';
+
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
-10 Create a function that receives driver availability, user balance, and trip cost. Ride
-starts if driver available AND balance ≥ trip cost. Return 'Ride Confirmed' or
-'Insufficient Conditions'.
+9 Create a function that receives completedLessons and quizScore. Next level unlocks if
+completed lessons ≥ 10 AND quiz score ≥ 70. Return 'Level Unlocked' or 'Complete
+Requirements'.
  */
 void main(List<String> arguments) {
-  print(checkRideStatus(true, 10.0, 5.0));
-  print(checkRideStatus(false, 10.0, 5.0));
-  print(checkRideStatus(true, 5.0, 10.0));
-  print(checkRideStatus(true, 5.0, -10.0));
-  print(checkRideStatus(true, -5.0, 10.0));
+  print("Enter your completed lessons:");
+  int completedLessons = int.parse(stdin.readLineSync()!);
+  if (completedLessons < 0) {
+    print("-----------------------------------");
+    print("Invalid number of completed lessons.");
+    print("-----------------------------------");
+    return;
+  }
+  print("Enter your quiz score (0–100):");
+  int quizScore = int.parse(stdin.readLineSync()!);
+  if (quizScore < 0 || quizScore > 100) {
+    print("-----------------------------------------------------------");
+    print("Invalid quiz score. Please enter a value between 0 and 100.");
+    print("-----------------------------------------------------------");
+    return;
+  }
+
+  String levelStatus = checkLevelUnlock(
+    completedLessons: completedLessons,
+    quizScore: quizScore,
+  );
+  print("-------------------------------------");
+  print("Level Status: $levelStatus");
+  print("-------------------------------------");
 }
 
-String checkRideStatus(
-  bool driverAvailable,
-  double userBalance,
-  double tripCost,
-) {
-  if (userBalance < 0) {
-    return "Invalid Balance";
-  }
-  if (tripCost < 0) {
-    return "Invalid Trip Cost";
-  }
-
-  return (driverAvailable && userBalance >= tripCost)
-      ? "Ride Confirmed"
-      : "Insufficient Conditions";
+String checkLevelUnlock({
+  required int completedLessons,
+  required int quizScore,
+}) {
+  return (completedLessons >= 10 && quizScore >= 70)
+      ? "Level Unlocked"
+      : "Complete Requirements";
 }
