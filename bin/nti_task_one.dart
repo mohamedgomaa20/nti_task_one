@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
@@ -5,12 +7,23 @@ import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 if both are true. Return 'Door Opened' or 'Access Restricted'.
  */
 void main(List<String> arguments) {
-  print(checkDoorAccess(true, true));
-  print(checkDoorAccess(true, false));
-  print(checkDoorAccess(false, true));
-  print(checkDoorAccess(false, false));
+  print("Do you have an access card? (y/n):");
+  bool hasAccessCard = stdin.readLineSync()?.toLowerCase() == "y";
+  print("Do you know the password? (y/n):");
+  bool knowsPassword = stdin.readLineSync()?.toLowerCase() == "y";
+
+  print("---------------------------------");
+  String doorAccess = checkDoorAccess(
+    hasAccessCard: hasAccessCard,
+    knowsPassword: knowsPassword,
+  );
+  print("Door Access Status: $doorAccess");
+  print("---------------------------------");
 }
 
-String checkDoorAccess(bool hasAccessCard, bool knowsPassword) {
+String checkDoorAccess({
+  required bool hasAccessCard,
+  required bool knowsPassword,
+}) {
   return (hasAccessCard && knowsPassword) ? "Door Opened" : "Access Restricted";
 }
