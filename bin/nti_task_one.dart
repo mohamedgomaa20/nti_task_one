@@ -18,11 +18,21 @@ void main(List<String> arguments) {
   bool hasExistingLoan = stdin.readLineSync()?.toLowerCase() == 'y';
 
   print("==================");
-  print(checkLoanApproval(salary, age, hasExistingLoan));
+  print(
+    checkLoanApproval(
+      salary: salary,
+      age: age,
+      hasExistingLoan: hasExistingLoan,
+    ),
+  );
   print("==================");
 }
 
-String checkLoanApproval(double salary, int age, bool hasExistingLoan) {
+String checkLoanApproval({
+  required double salary,
+  required int age,
+  required bool hasExistingLoan,
+}) {
   if (salary < 0) {
     return "Invalid salary";
   }
