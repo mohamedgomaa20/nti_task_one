@@ -24,13 +24,19 @@ void main(List<String> arguments) {
     print("----------------------------------------");
     return;
   }
-  String bonusStatus = getBonusStatus(yearsOfExperience, performanceRating);
+  String bonusStatus = getBonusStatus(
+    yearsOfExperience: yearsOfExperience,
+    performanceRating: performanceRating,
+  );
   print("---------------------------");
   print("Bonus Status: $bonusStatus");
   print("---------------------------");
 }
 
-String getBonusStatus(int yearsOfExperience, int performanceRating) {
+String getBonusStatus({
+  required int yearsOfExperience,
+  required int performanceRating,
+}) {
   return yearsOfExperience >= 3 && performanceRating >= 4
       ? "Bonus Granted"
       : "No Bonus";
