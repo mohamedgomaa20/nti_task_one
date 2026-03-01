@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:nti_task_one/nti_task_one.dart' as nti_task_one;
 
 /*
@@ -6,21 +8,29 @@ Employee receives bonus if experience ≥ 3 AND rating ≥ 4. Return 'Bonus Gran
 'No Bonus'.
  */
 void main(List<String> arguments) {
-  print(getBonusStatus(5, 5));
-  print(getBonusStatus(4, 4));
-  print(getBonusStatus(2, 4));
-  print(getBonusStatus(4, 2));
-  print(getBonusStatus(4, 10));
-  print(getBonusStatus(4, -20));
+  print("Enter your years of experience:");
+  int yearsOfExperience = int.parse(stdin.readLineSync()!);
+  if (yearsOfExperience < 0) {
+    print("---------------------------");
+    print("Invalid years of experience");
+    print("---------------------------");
+    return;
+  }
+  print("Enter your performance rating (1-5):");
+  int performanceRating = int.parse(stdin.readLineSync()!);
+  if (performanceRating < 1 || performanceRating > 5) {
+    print("----------------------------------------");
+    print("Invalid performance rating. Please enter a value between 1 and 5.");
+    print("----------------------------------------");
+    return;
+  }
+  String bonusStatus = getBonusStatus(yearsOfExperience, performanceRating);
+  print("---------------------------");
+  print("Bonus Status: $bonusStatus");
+  print("---------------------------");
 }
 
 String getBonusStatus(int yearsOfExperience, int performanceRating) {
-  if (performanceRating < 1 || performanceRating > 5) {
-    return "Invalid Rating";
-  }
-  if (yearsOfExperience < 0) {
-    return "Invalid Experience";
-  }
   return yearsOfExperience >= 3 && performanceRating >= 4
       ? "Bonus Granted"
       : "No Bonus";
